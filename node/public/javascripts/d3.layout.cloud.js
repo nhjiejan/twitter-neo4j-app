@@ -12,7 +12,7 @@ module.exports = function() {
   var size = [256, 256],
       text = cloudText,
       font = cloudFont,
-      fontSize = cloudFontSize,
+      fontSize = cloudFontSize*4,
       fontStyle = cloudFontNormal,
       fontWeight = cloudFontNormal,
       rotate = cloudRotate,
@@ -218,7 +218,7 @@ function cloudFontNormal() {
 }
 
 function cloudFontSize(d) {
-  return Math.sqrt(d.value);
+  return Math.sqrt(d.value*4);
 }
 
 function cloudRotate() {
