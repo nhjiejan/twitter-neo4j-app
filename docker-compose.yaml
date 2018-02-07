@@ -1,0 +1,49 @@
+version: '2'
+
+services:
+
+  app:
+    build:
+      context: analytics/
+    environment:
+      NEO4J_URL: "http://twitterneo4japp_neo4j_1:7474/db/data"
+      NEO4J_PASSWORD: "Password123!"
+      TWITTER_BEARER: "AAAAAAAAAAAAAAAAAAAAAE9r4QAAAAAAqXzal2RIN5nDM8prohawgll7jjU%3DvZlyLZ8tBOQzXU1GuTq9AfOmIIwL7zPI0KUpYKt2QhM3y6WClA"
+      TWITTER_SEARCH: "@trump"
+    command: "python /app/twitter-neo4j-app/import.py"
+    depends_on:
+      - node
+    networks:
+      - twitter-neo4j-app
+
+  neo4j:
+    image: neo4j:latest
+    volumes:
+      - ./neo4j-data:/data
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    depends_on:
+      - node
+    networks:
+      - twitter-neo4j-app
+
+  node:
+    build:
+      context: node/
+    working_dir: /home/node/app
+    environment:
+      NODE_ENV: production
+      NEO4J_PASSWORD: "Password123!"
+    volumes:
+      - ./node:/home/node/app
+    ports:
+      - "3000:3000"
+    command: ["/bin/bash", "-c", "npm install && npm start"]
+    networks:
+      - twitter-neo4j-app
+
+networks:
+
+  twitter-neo4j-app:
+    driver: bridge

@@ -1,0 +1,3 @@
+FROM node:8
+USER node
+EXPOSE 3000
