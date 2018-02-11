@@ -33,7 +33,7 @@
       d3.layout.cloud().size([1000, 500])
               .words(json)
               .rotate(0)
-              .fontSize(function(d) { return d.size * 5; })
+              .fontSize(function(d) { return d.size * 10; })
               .on("end", draw)
               .start();
    });
