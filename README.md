@@ -67,4 +67,7 @@ update the docker-compose.yaml file and paste in the value for the "TWITTER_BEAR
 * update the `TWITTER_SEARCH` variable in the docker-compose.yaml file
 * restart the app: `docker-compose up -d`
 
+
+
+
 ------------------------------------------------------------------------
