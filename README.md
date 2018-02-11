@@ -57,6 +57,14 @@ update the docker-compose.yaml file and paste in the value for the "TWITTER_BEAR
 
 ### Visit http://localhost:3000
 * give the application a minute or two to load data from the twiter API and index in neo4j.
+* refresh the page to see the updated wordcloud with new data
 * if you're running this from within a VM (i.e vagrant) you will need to port-forward port 3000 to your host.
+
+
+### Try a new search term
+* first you will need to stop the application and tear down the neo4j database. to do this:
+* run `bash clear_down.sh`
+* update the `TWITTER_SEARCH` variable in the docker-compose.yaml file
+* restart the app: `docker-compose up -d`
 
 ------------------------------------------------------------------------
